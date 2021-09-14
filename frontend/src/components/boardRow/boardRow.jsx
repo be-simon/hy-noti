@@ -1,15 +1,15 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import styles from './boardRow.module.css'
 import ReactHtmlParser, { convertNodeToElement } from 'react-html-parser'
 import { useMediaQuery } from 'react-responsive';
 
-const BoardRow = ({info, isToggled, onToggle}) => {
-  const {_id, title, writer, date, content, file: fileLink} = info
+const BoardRow = ({id, info, isToggled, onToggle}) => {
+  const {title, writer, date, content, file: fileLink} = info
   const fileName = fileLink.split('/').pop()
   const isTabletOrMobile = useMediaQuery({query: '(max-width: 1024px)'})
 
-  function handleToggling() {
-    onToggle(_id)
+  function handleToggling(e) {
+    onToggle(id, e.currentTarget)
   }
 
   function handleWriter(w) {
