@@ -64,7 +64,7 @@ def insert_db(board, category, title, writer, date, content, files, driver=None)
         client.close()
         if driver is not None:
             driver.quit()
-        raise DuplicateKeyError
+        raise DuplicateKeyError('duplicate document')
     except:
         client.close()
         panic('db', 'insert_db', driver)
